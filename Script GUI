@@ -1,0 +1,65 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Simulator Hub", "DarkTheme")
+placeid = game.PlaceId
+
+function script()
+	--functions
+
+	--Tabs
+	local Tab = Window:NewTab("Universal")
+	--Sections
+	local Section = Tab:NewSection("Jump & Speed")
+	local Section2 = Tab:NewSection("Infinite Yield")
+	local Section3 = Tab:NewSection("Remote Spy")
+	local Section4 = Tab:NewSection("DexV3")
+	local Section5 = Tab:NewSection("Rejoin Game")
+	--Sliders
+	Section:NewSlider("WalkSpeed", "SliderInfo", 250, 20, function(s) -- 500 (MaxValue) | 0 (MinValue)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+	end)
+	Section:NewSlider("JumpBoost", "SliderInfo", 500, 20, function(s) -- 500 (MaxValue) | 0 (MinValue)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+	end)
+	--Dropdownlist
+	--Update sections
+	--Labels
+	--Buttons
+	Section2:NewButton("Execute Inf Yield", "No info", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+		print("Inf Yeild executed")
+	end)
+	Section3:NewButton("EngoSpy", "No info", function()
+		local settings = {
+	saveCalls = false,
+	maxCallsSaved = 1000,
+	saveOnlyLastCall = true,
+	maxTableDepth = 100,
+	minimizeBind = Enum.KeyCode.RightAlt,
+	blacklistedNames = {}
+	}
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/joeengo/engospy/main/source.lua"))(settings)
+	
+	end)
+
+	Section4:NewButton("Dex v3", "ServerHop", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
+	end)
+	Section4:NewButton("Part Path", "ServerHop", function()
+	local mouse = game.Players.LocalPlayer:GetMouse()
+	local uis = game:GetService("UserInputService")
+	mouse.Button1Down:Connect(function()
+    if mouse.Target and uis:IsKeyDown(Enum.KeyCode.LeftShift) then
+        warn(mouse.Target:GetFullName())
+    end
+	end)
+	end)
+
+	Section5:NewButton("Rejoin Game", "ServerHop", function()
+		game:GetService("TeleportService"):Teleport(game.PlaceId)
+		
+	end)
+
+	
+	--UpdateButtons
+end
+script()
